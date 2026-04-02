@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dailyair"
+version = "1.0.0"
+description = "Your AI-powered morning briefing agent. Curates newsletters, Substacks, YouTube, and podcasts into a personalized briefing read aloud to you every morning."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+keywords = ["ai", "news", "briefing", "podcast", "newsletter", "tts", "morning", "productivity"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+dependencies = [
+    "click>=8.1",
+    "pyyaml>=6.0",
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+    "feedparser>=6.0",
+    "imap-tools>=1.5",
+    "youtube-transcript-api>=0.6",
+    "edge-tts>=6.1",
+    "openai>=1.0",
+    "anthropic>=0.25",
+    "apscheduler>=3.10",
+]
+
+[project.optional-dependencies]
+google = [
+    "google-api-python-client>=2.0",
+    "google-auth-httplib2>=0.2",
+    "google-auth-oauthlib>=1.0",
+]
+elevenlabs = ["elevenlabs>=1.0"]
+offline = ["pyttsx3>=2.90"]
+all = ["dailyair[google,elevenlabs,offline]"]
+
+[project.scripts]
+dailyair = "dailyair.main:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/dailyair"
+Repository = "https://github.com/yourusername/dailyair"
+"Bug Tracker" = "https://github.com/yourusername/dailyair/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dailyair*"]

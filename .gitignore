@@ -1,0 +1,21 @@
+# DailyAir — never commit these
+config.yaml
+.env
+token.json
+credentials.json
+*.log
+dailyair-briefings/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.eggs/
+
+# OS
+.DS_Store
+Thumbs.db

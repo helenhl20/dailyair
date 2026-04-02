@@ -1,0 +1,28 @@
+# Core
+click>=8.1
+pyyaml>=6.0
+requests>=2.31
+beautifulsoup4>=4.12
+feedparser>=6.0
+imap-tools>=1.5
+youtube-transcript-api>=0.6
+apscheduler>=3.10
+
+# TTS (edge-tts is free and works out of the box)
+edge-tts>=6.1
+pygame>=2.5          # for the in-app MP3 player UI
+
+# LLM providers — install only the one(s) you use
+openai>=1.0          # for OpenAI, Groq, Together AI, Gemini (OpenAI-compat)
+anthropic>=0.25      # for Claude
+
+# Optional: Google Docs output
+# google-api-python-client>=2.0
+# google-auth-httplib2>=0.2
+# google-auth-oauthlib>=1.0
+
+# Optional: ElevenLabs TTS
+# elevenlabs>=1.0
+
+# Optional: fully offline system TTS
+# pyttsx3>=2.90

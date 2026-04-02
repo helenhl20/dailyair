@@ -1,0 +1,130 @@
+# ============================================================
+#  DailyAir — Your AI Morning Briefing Agent
+#  Copy this file to config.yaml and fill in your details.
+# ============================================================
+
+# --- LLM Provider -------------------------------------------
+# Options: openai | anthropic | ollama | gemini
+llm:
+  provider: openai
+  model: gpt-4o-mini        # or claude-3-haiku-20240307, llama3, etc.
+  api_key: YOUR_API_KEY_HERE  # or set env var: DAILYAIR_LLM_API_KEY
+  base_url:                 # optional: for custom endpoints / Ollama (e.g. http://localhost:11434)
+
+# --- Sources ------------------------------------------------
+# Add people, newsletters, podcasts, and websites you follow.
+sources:
+  people:
+    - name: Andrej Karpathy
+      handles:
+        twitter: karpathy
+        youtube: "@AndrejKarpathy"
+        substack: karpathy.substack.com
+    - name: Sam Altman
+      handles:
+        twitter: sama
+        blog: blog.samaltman.com
+    - name: Ben Thompson
+      handles:
+        substack: stratechery.com
+    - name: Lenny Rachitsky
+      handles:
+        substack: lennysnewsletter.com
+        twitter: lennysan
+
+  # Newsletters received in your dedicated email inbox
+  email_newsletters:
+    - The Rundown AI
+    - TLDR AI
+    - Import AI
+    - The Batch by deeplearning.ai
+    - Axios AI+
+
+  # RSS/Atom feeds (direct URLs)
+  rss_feeds:
+    - https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+    - https://techcrunch.com/category/artificial-intelligence/feed/
+
+  # YouTube channels
+  youtube_channels:
+    - "@TwoMinutePapers"
+    - "@lexfridman"
+
+  # Podcasts (RSS feed URL)
+  podcasts:
+    - name: Lex Fridman Podcast
+      rss: https://lexfridman.com/feed/podcast/
+    - name: The TWIML AI Podcast
+      rss: https://feeds.simplecast.com/XA_851k3
+
+# --- Email Inbox (for newsletters) -------------------------
+email:
+  enabled: false
+  imap_server: imap.gmail.com
+  imap_port: 993
+  username: your-newsletter-email@gmail.com
+  password: YOUR_APP_PASSWORD  # Use an app password, not your main password
+  folder: INBOX
+  max_emails: 30
+  since_days: 1
+
+# --- Schedule -----------------------------------------------
+schedule:
+  enabled: true
+  time: "06:30"
+  timezone: America/New_York
+
+# --- Output -------------------------------------------------
+output:
+  formats:
+    - markdown
+
+  markdown:
+    path: ~/dailyair-briefings/
+
+  email:
+    enabled: false
+    smtp_server: smtp.gmail.com
+    smtp_port: 587
+    from_address: your-email@gmail.com
+    to_address: your-email@gmail.com
+    password: YOUR_APP_PASSWORD
+
+  google_docs:
+    enabled: false
+    folder_name: DailyAir Briefings
+    credentials_file: credentials.json
+
+  # Telegram — sends the briefing text + MP3 to your phone every morning.
+  # Perfect for VM/server deployments where there's no browser to open.
+  #
+  # Setup (takes ~2 minutes):
+  #   1. Open Telegram and message @BotFather → send /newbot → follow prompts
+  #   2. Copy the token BotFather gives you (looks like 123456:ABC-DEF...)
+  #   3. Start a chat with your new bot (search its name and press Start)
+  #   4. Visit https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates in a browser
+  #   5. Send any message to your bot, refresh the page, and copy the
+  #      numeric "id" value inside "chat" — that's your chat_id
+  #
+  # Then add "telegram" to output.formats above and fill in below:
+  telegram:
+    bot_token: YOUR_BOT_TOKEN   # from BotFather, e.g. 7123456789:AAF...
+    chat_id: YOUR_CHAT_ID       # numeric, e.g. 123456789
+    send_text: true             # send the briefing as a text message
+    send_audio: true            # send the MP3 so you can listen on your phone
+
+# --- Text-to-Speech (TTS) ----------------------------------
+tts:
+  enabled: true
+  provider: edge              # edge (free) | openai | elevenlabs | system
+  voice: en-US-GuyNeural
+  speed: 1.15
+  api_key:                    # Only needed for openai / elevenlabs
+
+# --- Briefing Style ----------------------------------------
+briefing:
+  max_items_per_source: 3
+  summary_length: medium      # short | medium | long
+  style: conversational       # conversational | bullet_points | executive
+  include_quotes: true
+  opening_line: "Good morning! Here's your DailyAir briefing for today."
